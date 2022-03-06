@@ -1,0 +1,24 @@
+{
+  "name": "my-promise",
+  "version": "1.0.0",
+  "description": "实现符合 Promise/A+ 规范的 Promise",
+  "main": "index.js",
+  "scripts": {
+    "serve": "nodemon ./index.js -i ./data/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wenyuan/my-promise.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wenyuan/my-promise/issues"
+  },
+  "homepage": "https://github.com/wenyuan/my-promise#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
