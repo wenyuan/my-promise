@@ -1,21 +1,28 @@
 const MyPromise = require('./MyPromise');
 
-let promise = new MyPromise((resolve, reject) => {
-  setTimeout(() => {
-    resolve('success');
-  }, 2000);
+let promise1 = new MyPromise((resolve, reject) => {
+  resolve('promise 1')
 })
 
-// 解决异步问题的时候, 顺便把多次调用 then 的问题也一起解决了
-// 所以此处调用两个 promise.then
-promise.then((value) => {
-  console.log('Resolved 1:', value);
+let promise2 = promise1.then(() => {
+  return new MyPromise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(new MyPromise((resolve, reject) => {
+        resolve(new MyPromise((resolve, reject) => {
+          resolve('new Promise resolve');
+        }))
+      }))
+    }, 2000)
+  })
 }, (reason) => {
-  console.log('Rejected 1:', reason);
-});
+  return reason;
+})
 
-promise.then((value) => {
-  console.log('Resolved 2:', value);
+promise2.then().then().then((value) => {
+  throw Error('Error');
 }, (reason) => {
-  console.log('Rejected 2:', reason);
-});
+  console.log(reason);
+})
+.catch((e) => {
+  console.log(e);
+})
