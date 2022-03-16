@@ -1,5 +1,5 @@
 /**
- * @desc 一个基本的 Promise
+ * @desc 一个基本的 Promise, 支持异步与多次调用 then, 不支持链式调用
  */
 
 const PENDING = 'pending';

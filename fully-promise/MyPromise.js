@@ -1,5 +1,5 @@
 /**
- * @desc 一个符合规范的 Promise 核心实现, 通过了 Promises/A+ 官方 872 个测试用例测试
+ * @desc 一个完整的 Promise, 根据规范实现了 Promise ES6+ 的全部 API
  */
 
 const PENDING = 'pending';
@@ -182,18 +182,6 @@ function resolvePromise(promise2, x, resolve, reject) {
     resolve(x);
   }
 }
-
-
-// 用于进行 Promises/A+ 官方用例测试(共 872 个测试用例)
-MyPromise.deferred = function () {
-  let result = {};
-  result.promise = new MyPromise((resolve, reject) => {
-    result.resolve = resolve;
-    result.reject = reject;
-  });
-  return result;
-}
-
 
 // 我是在 Node 环境下测试的
 // 所以遵循 CommonJS 的规范进行模块导出

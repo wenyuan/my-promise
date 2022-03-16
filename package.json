@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "serve": "nodemon ./index.js -i ./data/",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "promises-aplus-tests MyPromise"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,6 @@
   },
   "homepage": "https://github.com/wenyuan/my-promise#readme",
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "promises-aplus-tests": "^2.1.2"
   }
 }
