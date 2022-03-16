@@ -26,11 +26,10 @@ class MyPromise {
       if (this.status === PENDING) {
         this.status = FULFILLED;
         this.value = value;
+        // 发布
+        // 处理异步里的 resolve()
+        this.onFulfilledCallbacks.forEach(fn => fn());
       }
-
-      // 发布
-      // 处理异步里的 resolve()
-      this.onFulfilledCallbacks.forEach(fn => fn());
     }
 
     // 每次实例化时重新声明 reject
@@ -39,11 +38,10 @@ class MyPromise {
       if (this.status === PENDING) {
         this.status = REJECTED;
         this.reason = reason;
+        // 发布
+        // 处理异步里的 reject()
+        this.onRejectedCallbacks.forEach(fn => fn());
       }
-
-      // 发布
-      // 处理异步里的 reject()
-      this.onRejectedCallbacks.forEach(fn => fn());
     }
 
     // 捕获 executor 里面抛出的异常
