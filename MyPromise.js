@@ -24,11 +24,13 @@ class MyPromise {
     const resolve = (value) => {
       // 只有 pending 状态才能变成 fulfilled
       if (this.status === PENDING) {
-        this.status = FULFILLED;
-        this.value = value;
-        // 发布
-        // 处理异步里的 resolve()
-        this.onFulfilledCallbacks.forEach(fn => fn());
+        setTimeout(() => {
+          this.status = FULFILLED;
+          this.value = value;
+          // 发布
+          // 处理异步里的 resolve()
+          this.onFulfilledCallbacks.forEach(fn => fn());
+        }, 0)
       }
     }
 
@@ -36,11 +38,13 @@ class MyPromise {
     const reject = (reason) => {
       // 只有 pending 状态才能变成 rejected
       if (this.status === PENDING) {
-        this.status = REJECTED;
-        this.reason = reason;
-        // 发布
-        // 处理异步里的 reject()
-        this.onRejectedCallbacks.forEach(fn => fn());
+        setTimeout(() => {
+          this.status = REJECTED;
+          this.reason = reason;
+          // 发布
+          // 处理异步里的 reject()
+          this.onRejectedCallbacks.forEach(fn => fn());
+        }, 0)
       }
     }
 
