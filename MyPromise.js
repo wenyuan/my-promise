@@ -76,7 +76,7 @@ class MyPromise {
    * 注册 fulfilled 状态 / rejected 状态对应的回调函数
    * @param {function} onFulfilled: fulfilled 状态时 执行的函数
    * @param {function} onRejected: rejected 状态时 执行的函数
-   * @return {object} newPromise: 返回一个新的 promise 对象
+   * @return {object} newPromise: 返回一个新的 Promise 对象
    */
   then (onFulfilled, onRejected) {
     /**
@@ -87,7 +87,7 @@ class MyPromise {
      */
     onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value;
     onRejected = typeof onRejected === 'function' ? onRejected : reason => { throw reason};
-    // 2.2.7 then 方法必须返回一个 promise 对象
+    // 2.2.7 then 方法必须返回一个 Promise 对象
     // 故此处定义一个 promise2
     let promise2 = new MyPromise((resolve, reject) => {
       if (this.status === FULFILLED) {
@@ -165,7 +165,7 @@ class MyPromise {
 /**
  * Promise 解决过程, 即规范所说的 [[Resolve]](promise2, x)
  * 对 resolve()、reject() 中的返回值 x 进行处理
- * @param {object} promise2: promise1.then 方法返回的新的 promise 对象
+ * @param {object} promise2: promise1.then 方法返回的新的 Promise 对象
  * @param {*} x: promise1 中 onFulfilled 或 onRejected 的返回值
  * @param {function} resolve: promise2 的 resolve 方法
  * @param {function} reject: promise2 的 reject 方法
@@ -183,11 +183,11 @@ function resolvePromise(promise2, x, resolve, reject) {
   if ((typeof x === 'object' && x !== null) || (typeof x === 'function')) {
     // 2.3.3.2 捕获错误异常
     try {
-      // 2.3.3.1 如果 x 是 promise 对象, 它一定有 then 方法
+      // 2.3.3.1 如果 x 是 Promise 对象, 它一定有 then 方法
       let then = x.then;
       /**
        * 2.3.3.3
-       * 如果 then 是函数, 就可以认定 x 是个 promise 对象(但不能绝对排除人为给 x 设置了一个 then 方法的情况)
+       * 如果 then 是函数, 就可以认定 x 是个 Promise 对象(但不能绝对排除人为给 x 设置了一个 then 方法的情况)
        * 将 x 作为函数的作用域 this 调用之
        * 传递两个回调函数作为参数
        * 第一个参数叫做 resolvePromise, 第二个参数叫做 rejectPromise
@@ -207,7 +207,7 @@ function resolvePromise(promise2, x, resolve, reject) {
           reject(r);
         })
       } else {
-        // 2.3.3.4 如果 x 不是个 promise 对象, 以 x 为参数执行 promise
+        // 2.3.3.4 如果 x 不是个 Promise 对象, 以 x 为参数执行 promise
         resolve(x);
       }
     } catch (e) {
